@@ -73,9 +73,8 @@ public class PlayerController : MonoBehaviour
 			normalizedHorizontalSpeed = 1;
 			if( transform.localScale.x < 0f )
 				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
-			
-			if( _controller.isGrounded )
-				_animator.Play( Animator.StringToHash( "Run" ) );
+
+			_animator.SetTrigger("Run");
 		}
 		else if( Input.GetKey( KeyCode.LeftArrow ) )
 		{
@@ -83,8 +82,8 @@ public class PlayerController : MonoBehaviour
 			if( transform.localScale.x > 0f )
 				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
 			
-			if( _controller.isGrounded )
-				_animator.Play( Animator.StringToHash( "Run" ) );
+				//_animator.Play( Animator.StringToHash( "Run" ) );
+			_animator.SetTrigger("Run");
 		}
 		else
 		{
@@ -99,7 +98,11 @@ public class PlayerController : MonoBehaviour
 		if( _controller.isGrounded && Input.GetKeyDown( KeyCode.Z ) )
 		{
 			_velocity.y = Mathf.Sqrt( 2f * jumpHeight * -gravity );
-			_animator.Play( Animator.StringToHash( "Jump" ) );
+			//if( _controller.isGrounded && Input.GetKeyDown(KeyCode.X))
+			//	_animator.SetTrigger("Attack");
+			//else
+			//	_animator.Play( Animator.StringToHash( "Jump" ) );
+			_animator.SetTrigger("Jump");
 		}
 
 
